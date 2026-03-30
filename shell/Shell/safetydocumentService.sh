@@ -1,4 +1,4 @@
-#bin/bash
+#!/bin/bash
 
 # =============================================
 # Shell模板：生成Java服务的systemd service文件
