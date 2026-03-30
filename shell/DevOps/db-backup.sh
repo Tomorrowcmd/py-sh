@@ -18,7 +18,8 @@ mkdir -p $BACKUP_DIR
 # 开始备份, 如果本地连接数据库没有密码就不要加-p:  mysqldump -u$USER -p$PASS $db > $BACKUP_DIR/${db}_${DATE}.sql
 for db in $DBS
 do
-    mysqldump -u$USER $db > $BACKUP_DIR/${db}_${DATE}.sql
+    # mysqldump -u$USER $db > $BACKUP_DIR/${db}_${DATE}.sql
+    mysqldump -u$USER -p$PASS $db > $BACKUP_DIR/${db}_${DATE}.sql
 done
 
 # 可选：删除90天前的旧备份

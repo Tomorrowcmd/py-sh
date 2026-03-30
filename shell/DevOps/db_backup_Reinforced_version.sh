@@ -25,7 +25,7 @@ BACKUP_FILE="${DB_NAME}_${DATE}}.sql"
 echo "=========== $(date '+%F %T') 开始备份 =============" >> $LOG_FILE
 
 # =========== 开始备份 =============
-mysqldump -h$DB_HOST -P$DB_ROOT -u$%DB_USER -p$DB_PASS $DB_NAME > $BACKUP_DIR/$BACKUP_FILE 2>> $LOG_FILE
+mysqldump -h$DB_HOST -P$DB_PORT -u$DB_USER -p$DB_PASS $DB_NAME > $BACKUP_DIR/$BACKUP_FILE 2>> $LOG_FILE
 
 # ========== 判断是否成功 ============
 # $? 表示上一个命令执行的状态
