@@ -37,7 +37,7 @@ fi
 echo "========= 开始全自动部署流程 ========="
 sleep 2
 # --- 3. MariaDB 配置与初始化 ---
-echo "▶ 1/4 正在配置 MariaDB..."
+echo "▶ 1/4 正在配置 MariaDB...请稍后..."
 MARIADB_CONF="/etc/my.cnf.d/mariadb-server.cnf"
 if [ -f "$MARIADB_CONF" ]; then
     if ! grep -q "lower_case_table_names" "$MARIADB_CONF"; then
@@ -48,7 +48,7 @@ else
     echo "❌ 错误：未找到 $MARIADB_CONF"
     exit 1
 fi
-
+# 设置开机自启并立即启动 MariaDB 服务
 systemctl enable mariadb --now
 
 echo "▶ 正在初始化数据库内容..."
