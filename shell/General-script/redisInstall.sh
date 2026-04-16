@@ -9,15 +9,15 @@ mkdir redis
 redis_tar="redis-7.0.15.tar.gz"
 LOG="/tmp/redis_build.log"
 
-echo "开始编译安装中，请稍后...."
+echo "开始编译安装中，中途请不要中断...请稍后...."
 
-touch /tmp/redis_build.log
+touch "$LOG"
 
 mv ${redis_tar} /opt/redis
 
 cd /opt/redis
 
-tar -xf ${redis_tar}
+tar -zxf ${redis_tar}
 
 cd "redis-7.0.15"
 
@@ -25,7 +25,7 @@ cd "redis-7.0.15"
 # 丢掉编译输出的内容, 0通常是标准输入（STDIN）, 1是标准输出（STDOUT）,2是标准错误输出（STDERR）
 make >"$LOG" 2>&1
 
-make install > /dev/null
+make install >> "$LOG" 2>&1
 
 pwd
 
@@ -36,7 +36,7 @@ cp redis.conf /etc/redis
 cd /etc/redis
 
 # sed -i 's/^bind 127.0.0.1 -::1/bind 0.0.0.0/' "/etc/redis/redis.conf" 
-sed -i 's/^#\s*requirepass .*/requirepass 123456/' /etc/redis/redis.conf 
+sed -i 's/^#\s*requirepass .*/requirepass 111111/' /etc/redis/redis.conf 
 
 touch /etc/systemd/system/redis.service
 
@@ -60,7 +60,7 @@ EOF
 systemctl daemon-reload
 systemctl enable redis --now
 
-echo "redis 部署完毕"
+echo "redis 部署完毕, redis密码为111111"
 
 
 
